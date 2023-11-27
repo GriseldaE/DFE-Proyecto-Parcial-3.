@@ -1,0 +1,41 @@
+<div class="table-container">
+
+    <table>
+  
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Estado</th>
+          <th>name</th>
+          <th>Price</th>
+
+        </tr>
+      </thead>
+  
+      <tbody>
+  
+        <tr *ngFor="let game of listadoGames" (click)="gameSeleccionado = game">
+          <td> <strong>{{ game.id }}</strong> </td>
+          <td> <span class="tag">{{ game.Status }}</span> </td>
+          <td>{{ game.NameGame }}</td>
+          <td>{{ game.Price | currency }}</td>
+
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  
+  </div>
+  
+  <div class="message" *ngIf="listadoGames.length === 0">
+    <p>{{ cargandoGames ? 'Cargando...' : 'No se encontraron registros...'}}</p>
+  </div>
+  
+  
+  <app-detalles *ngIf="gameSeleccionado !== null"
+    [game]="gameSeleccionado"
+    (close)="gameSeleccionado = null">
+  
+  </app-detalles>
+  
